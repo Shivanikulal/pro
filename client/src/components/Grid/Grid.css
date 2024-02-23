@@ -1,0 +1,164 @@
+.grid{
+	margin: 0px auto;
+}
+
+.column{
+	padding:0px 30px 0px 30px;
+}
+
+h2{
+	height:75px;
+	font-size:120%;
+	margin-top:60px;
+}
+
+.rowGrid{
+	width: 100vw;	
+}
+
+.grid{
+	margin: 0px;
+}
+
+.grid-info {
+	font-size:110%;
+	padding: 50px 10px;
+	color:#2d4157;
+}
+
+.flip-container {
+	-webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	-o-perspective: 1000;
+	perspective: 1000;
+	margin: auto;
+  }
+  
+.flip-container:hover .flipper,  
+.flip-container.hover .flipper {
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	-o-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+	cursor:pointer;
+}
+  
+.flip-container, .front, .back {
+	width: 200px;
+	height: 200px;
+}
+  
+.flipper {
+	-webkit-transition: 0.7s;
+	-webkit-transform-style: preserve-3d;
+
+	-moz-transition: 0.7s;
+	-moz-transform-style: preserve-3d;
+
+	-o-transition: 0.7s;
+	-o-transform-style: preserve-3d;
+
+	transition: 0.7s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+  
+.front, .back {
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	position: absolute;
+}
+  
+.back {
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	-o-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
+#pill-icon {
+	background: url(../../assets/drug-icon.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	z-index: 2;
+}
+
+#ear-icon {
+	background: url(../../assets/ear-icon.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	z-index: 2;
+}
+
+#survey-icon {
+	background: url(../../assets/survey-icon.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	z-index: 2;
+}
+
+#heart-icon {
+	background: url(../../assets/heart-icon.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	z-index: 2;
+}
+
+#pill-icon-fade {
+	background-image: url(../../assets/drug-icon-fade.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#ear-icon-fade {
+	background-image: url(../../assets/ear-icon-fade.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#survey-icon-fade {
+	background-image: url(../../assets/survey-icon-fade.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#heart-icon-fade {
+	background-image: url(../../assets/heart-icon-fade.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+/* Mobile Style */
+@media only screen and (max-width:480px) {
+	.flip-container, .front, .back {
+		width: 175px;
+		height: 175px;
+	}
+
+	h2{
+		height:60px;
+		font-size:100%;
+		margin-top:40px;
+	}
+
+	.column{
+		padding:0px 20px 0px 20px;
+	}
+
+	.grid-info {
+		font-size:100%;
+		padding: 45px 10px;
+		font-weight:bold;
+	}
+}

@@ -1,0 +1,48 @@
+.addPatientForm{
+	padding-top:100px;
+}
+
+.add-patient-page {
+	background-color: #2d4157;
+	color:#fff;
+	margin: 0;
+	width:100%;
+	height: 100%;
+}
+
+.form-title {
+	font-size:200%;
+}
+
+.add-patient-btn {
+	margin-top:10px;
+}
+
+.patient-form-label {
+	text-align:right;
+}
+
+/* Tablet Style */
+@media only screen and (min-width: 481px) and (max-width:768px) {
+	.addPatientForm{
+		padding-top:30px;
+		margin: 0px auto;
+	}
+
+	.form-title {
+		font-size:150%;
+		margin-bottom:0px;
+	}
+}
+
+/* Mobile Style */
+@media only screen and (max-width:480px) {
+	.addPatientForm{
+		padding-top:20px;
+		margin: 0px 0px 0 25px;
+	}
+
+	.form-title {
+		font-size:150%;
+	}
+}

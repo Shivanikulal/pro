@@ -1,0 +1,11 @@
+.footer {
+  height: 60px;
+  background: #2d4157;
+  margin-top: 50px;
+}
+
+.footerText{
+    padding-top:20px;
+    color: white;
+    font-size: 80%;
+}

@@ -1,0 +1,28 @@
+.SignupForm{
+	background-color: #2d4157;
+	color:#fff;	
+	height:100vh;
+	padding-top:80px;
+}
+
+/* Tablet Style */
+@media only screen and (min-width: 481px) and (max-width:768px) {
+	.SignupForm{
+		padding-top:50px;	
+	}
+}
+
+/* Mobile Style */
+@media only screen and (max-width:480px) {
+	.signupLabel {
+		text-align: right;
+	}
+
+	.SignupForm{
+		padding-top:50px;	
+	}
+
+	.form {
+		margin: 0px 10px;
+	}
+}

@@ -1,0 +1,39 @@
+/* .Carousel {
+  width:100%;
+  height: 450px;
+  margin:0;
+  padding:0;
+} */
+
+.park {
+  width:100%;
+  height:450px;
+  margin:0;
+}
+
+/* .park {
+  background-image: url('../../assets/park-landscape.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height:450px;
+  width:100%;
+} */
+
+/* .living-room {
+  background-image: url('../../assets/living-room.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height:450px;
+  width:100%;
+}
+
+.other {
+  background-image: url('https://broomfield.house.hyatt.com/multimedia/en/house/denxb/gateway.image.DENXB_P015_Outdoor_Patio_51668_low.jpg.html');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height:450px;
+  width:100%;
+} */
