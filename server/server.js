@@ -17,7 +17,7 @@ if (process.env.MONGODB_URI) {
 var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/pills'
 
 // should mongoose.connection be put in the call back of mongoose.connect???
-mongoose.connect("mongodb://heroku_8rwhgj3v:dgmcu1p05ienb8c71ngmql62kb@ds151955.mlab.com:51955/heroku_8rwhgj3v");
+mongoose.connect("mongodb+srv://nishchitha_p:Nishu2004@cluster0.yzlczs7.mongodb.net/");
 const db = mongoose.connection
 db.on('error', err => {
 	console.log(`There was an error connecting to the database: ${err}`)
