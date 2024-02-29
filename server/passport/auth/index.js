@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../../db/models/User')
+const User = require('../../models/User')
 const passport = require('passport')
-const Patient = require('../../db/models/Patients')
-const Reminder = require('../../db/models/Reminders')
+const Patient = require('../../models/Patients')
+const Reminder = require('../../models/Reminders')
 const moment = require('moment');
 
 //==================================Twilio=========================================
@@ -26,24 +26,61 @@ router.get('/user', (req, res, next) => {
 
 router.post(
 	'/login',
-	function(req, res, next) {
-		console.log(req.body)
-		console.log('================')
-		next()
+	async (req, res, next) => {
+	  try {
+		console.log(req.body);
+		console.log('================');
+		next();
+	  } catch (error) {
+		console.error(error);
+		res.status(500).json({ error: 'Internal Server Error' });
+	  }
 	},
-	passport.authenticate('local'),
-	(req, res) => {
-		console.log('POST to /login')
-		const user = JSON.parse(JSON.stringify(req.user)) // hack
-		const cleanUser = Object.assign({}, user)
+	async (req, res, next) => {
+	  try {
+		// Use passport.authenticate as a middleware
+		await passport.authenticate('local', async (err, user, info) => {
+		  if (err) {
+			console.error(err);
+			return res.status(500).json({ error: 'Internal Server Error' });
+		  }
+  
+		  if (!user) {
+			return res.status(401).json({ error: 'Authentication failed' });
+		  }
+  
+		  // Log in the user
+		  req.login(user, (err) => {
+			if (err) {
+			  console.error(err);
+			  return res.status(500).json({ error: 'Internal Server Error' });
+			}
+  
+			// Continue to the next middleware
+			next();
+		  });
+		})(req, res, next);
+	  } catch (error) {
+		console.error(error);
+		res.status(500).json({ error: 'Internal Server Error' });
+	  }
+	},
+	async (req, res) => {
+	  try {
+		console.log('POST to /login');
+		const user = JSON.parse(JSON.stringify(req.user)); // hack
+		const cleanUser = Object.assign({}, user);
 		if (cleanUser.local) {
-			console.log(`Deleting ${cleanUser.local.password}`)
-			delete cleanUser.local.password
+		  console.log(`Deleting ${cleanUser.local.password}`);
+		  delete cleanUser.local.password;
 		}
-		res.json({ user: cleanUser })
+		res.json({ user: cleanUser });
+	  } catch (error) {
+		console.error(error);
+		res.status(500).json({ error: 'Internal Server Error' });
+	  }
 	}
-)
-
+  );
 router.post('/logout', (req, res) => {
 	if (req.user) {
 		req.session.destroy()
@@ -54,29 +91,35 @@ router.post('/logout', (req, res) => {
 	}
 })
 
-router.post('/signup', (req, res) => {
-	const { email, password, phone, firstName, lastName } = req.body
-	// ADD VALIDATION
-	User.findOne({ 'local.email': email }, (err, userMatch) => {
-		if (userMatch) {
-			return res.json({
-				error: `Sorry, already a user with the email: ${email}`
-			})
-		}
-		const newUser = new User({
-			'local.email': email,
-			'local.password': password,
-			"phone": phone,
-			"firstName": firstName,
-			"lastName": lastName
-		})
-		newUser.save((err, savedUser) => {
-			if (err) return res.json(err)
-			return res.json(savedUser)
-		})
-	})
-})
-
+router.post('/signup', async (req, res) => {
+	try {
+	  const { email, password, phone, firstName, lastName } = req.body;
+  
+	  // ADD VALIDATION
+	  const userMatch = await User.findOne({ 'local.email': email });
+  
+	  if (userMatch) {
+		return res.json({
+		  error: `Sorry, already a user with the email: ${email}`,
+		});
+	  }
+  
+	  const newUser = new User({
+		'local.email': email,
+		'local.password': password,
+		phone,
+		firstName,
+		lastName,
+	  });
+  
+	  const savedUser = await newUser.save();
+  
+	  return res.json(savedUser);
+	} catch (err) {
+	  console.error(err);
+	  return res.status(500).json({ error: 'Internal Server Error' });
+	}
+  });
 router.get('/patients/:id', (req, res) => {
 
 const id = req.params.id;
@@ -128,7 +171,7 @@ console.log("Getting reminders route")
 })
 
 
-router.post("/addPatient", (req, res) => {
+router.post("/Patients", (req, res) => {
 	const caretakerId = req.body._id;
 	const { patientName, patientPhone, patientStreet, patientCity, patientState, patientZip } = req.body
 
